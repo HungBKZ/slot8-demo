@@ -1,68 +1,172 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# SLOT7 - Demo React DevTools
 
-## Available Scripts
+Demo gồm 3 phần trong 1 dự án React: **Inspecting Components**, **Using Context API**, **Performance Profiling**. Tất cả nằm trong App.js với menu nút bấm để chuyển màn hình.
 
-In the project directory, you can run:
+---
 
-### `yarn start`
+## 1) Chuẩn bị môi trường
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Cài **Node.js LTS (>= 18)**
+- Cài **Visual Studio Code** (khuyên dùng để tích hợp React DevTools)
+- Cài **Chrome** hoặc **Edge** (cài extension [React Developer Tools](https://chromewebstore.google.com/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi))
+- Tuỳ chọn: sử dụng trình duyệt khác có hỗ trợ extension DevTools
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+---
 
-### `yarn test`
+## 2) Tạo dự án mới bằng npx (template blank)
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+npx create-react-app slot8-react-devtools-demo --template blank
+cd slot8-react-devtools-demo
+npm start
+```
+> **Lưu ý:** Nếu `--template blank` báo lỗi, hãy dùng mặc định:
+> ```bash
+> npx create-react-app slot8-react-devtools-demo
+> ```
 
-### `yarn build`
+Trình duyệt sẽ tự mở: http://localhost:3000
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## 3) Dán code demo
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Mở file `src/App.js`
+- Xoá nội dung mặc định và dán toàn bộ nội dung App.js từ dự án này (menu + 3 màn hình demo)
+- Tạo thêm thư mục `src/screens/` và thêm 3 file tương ứng bên dưới:
+  - `InspectingComponentScreen.js`
+  - `ContextApiScreen.js`
+  - `PerformanceProfilingScreen.js`
+- Lưu file, trình duyệt sẽ tự reload.
 
-### `yarn eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## 4) Nội dung từng màn hình
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Inspecting Components
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Minh hoạ cách mở React DevTools, xem props/state, cấu trúc cây component.
+- Có nút đổi màu để thấy state thay đổi ngay trong DevTools.
+- Hướng dẫn thao tác trực tiếp.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Using Context API
 
-## Learn More
+- Minh hoạ Context API: tạo ThemeContext để truyền theme xuống nhiều component con.
+- Có nút chuyển theme (light/dark), kiểm tra giá trị context qua DevTools.
+- Hướng dẫn xem giá trị context.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Performance Profiling
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Minh hoạ cách dùng tab Profiler của React DevTools.
+- Có list với nút thêm item, đo thời gian render và xem components nào bị re-render.
+- Hướng dẫn thao tác đo hiệu năng.
 
-### Code Splitting
+---
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+## 5) Chạy demo trong repo này
 
-### Analyzing the Bundle Size
+```bash
+npm install
+npm start
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+Mở trên trình duyệt, dùng menu để chuyển qua các màn hình.
 
-### Making a Progressive Web App
+---
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+## 6) Lưu ý
 
-### Advanced Configuration
+- Để dùng React DevTools: mở trình duyệt, nhấn F12, chuyển sang tab **Components** hoặc **Profiler**.
+- Có thể xem props/state, context, hiệu năng render.
+- Khi test Profiler: nhấn nút "Start profiling", thao tác trên app, sau đó nhấn "Stop profiling" để xem kết quả.
+- Nếu chưa thấy tab **Components**/**Profiler**, hãy kiểm tra lại extension React Developer Tools đã cài chưa.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+---
 
-### Deployment
+## 7) Giải thích chi tiết các file chính
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+Dưới đây là mô tả các file quan trọng trong project và những phần cần chú ý khi demo với React DevTools.
 
-### `yarn build` fails to minify
+### `src/index.js`
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Vai trò: điểm khởi động (entry) của ứng dụng. File này khởi tạo React root và mount `App` vào DOM.
+
+Chi tiết:
+- Sử dụng API `createRoot` (React 18+) để mount app:
+  - Tốt hơn `ReactDOM.render` cũ, tương thích với concurrent features.
+
+### `src/App.js`
+
+Vai trò: giao diện chính chứa menu để chuyển giữa 3 màn hình demo (Inspect / Context / Profiling).
+
+Chi tiết:
+- Import 3 màn hình từ `src/screens/*`.
+- Định nghĩa mảng `MENU` gồm { key, label, component } để render các nút menu.
+- Sử dụng state `currentScreenKey` để biết màn hình hiện tại. Nếu `null` hiển thị menu; nếu có key, render component tương ứng.
+- Có nút "Back to Menu" để quay lại.
+
+### `src/screens/InspectingComponentScreen.js`
+
+Vai trò: demo cách dùng React DevTools để inspect component, xem state và props.
+
+Chi tiết:
+- Có state `color` và nút "Đổi màu background" để trigger re-render.
+- Thêm `ChildPropComponent` (con) nhận prop `exampleProp` để minh họa cách DevTools hiển thị props.
+- Khi bấm nút, thay đổi state sẽ hiển thị ngay trong tab Components của React DevTools — bạn có thể mở tree, chọn `InspectingComponentScreen` hoặc `ChildPropComponent` và xem giá trị state/props.
+
+Ví dụ kiểm tra trong DevTools: chọn component -> mục "props" và "state" sẽ hiển thị giá trị hiện tại.
+
+### `src/screens/ContextApiScreen.js`
+
+Vai trò: demo Context API và cách inspect giá trị context trong DevTools.
+
+Chi tiết:
+- Tạo `ThemeContext` bằng `createContext` và cung cấp giá trị thông qua `ThemeContext.Provider`.
+- Có state `theme` (light/dark) và nút đổi theme.
+- `ThemeChildComponent` sử dụng `useContext(ThemeContext)` để nhận giá trị và render giao diện tương ứng.
+
+Kiểm tra trong DevTools: chọn `ThemeChildComponent` để xem giá trị context hiện tại (React DevTools hiển thị `context` khi component dùng Context API).
+
+### `src/screens/PerformanceProfilingScreen.js`
+
+Vai trò: demo tab Profiler của React DevTools — đo thời gian render và tìm component tốn chi phí.
+
+Chi tiết:
+- Có state `items` (mảng) và nút "Thêm item" để khiến app re-render.
+- Thêm một component mô phỏng render nặng `HeavyComponent`:
+  - `HeavyComponent` thực hiện một vòng lặp tính toán lớn (simulated CPU work) để tạo ra chi phí render có thể thấy được trong Profiler.
+  - `MemoizedHeavy` là phiên bản `React.memo(HeavyComponent)` để minh họa cách memoization giúp tránh re-render không cần thiết.
+- Có checkbox "Show heavy component" để bật / tắt component nặng, giúp so sánh chi phí render khi thêm item.
+
+Hướng dẫn khi demo Profiler:
+- Mở tab Profiler, nhấn "Start profiling".
+- Thực hiện thao tác (ví dụ: bấm "Thêm item" hoặc bật/tắt heavy component), sau đó "Stop profiling" để xem breakdown thời gian render theo component.
+
+### Các file cấu hình và phụ trợ
+
+- `package.json`: chứa dependencies (react, react-dom, react-scripts) và script `npm start`.
+- `public/index.html`: template HTML có phần tử `<div id="root"></div>` để React mount vào.
+
+---
+
+Gợi ý nhỏ để demo mượt hơn
+- Mở DevTools trước khi tải trang (F12) để React DevTools dễ detect hook.
+- Nếu không thấy tab Components/Profiler: kiểm tra extension có bật không, hoặc trang có đang chạy trong iframe không (cross-origin iframe sẽ chặn).
+
+Phần này đã mô tả rõ các file và những điểm bạn nên chú ý khi demo React DevTools.
+---
+
+## 8) Hướng dẫn thao tác React DevTools
+
+- **Inspecting Components:**  
+  Mở tab **Components**, chọn component, xem props/state, thử bấm nút đổi màu để thấy state thay đổi realtime.
+
+- **Using Context API:**  
+  Chọn component con, kiểm tra context value, thử đổi theme để quan sát giá trị context thay đổi.
+
+- **Performance Profiling:**  
+  Mở tab **Profiler**, nhấn "Start profiling", thực hiện thao tác thêm item, nhấn "Stop profiling" để xem biểu đồ render và kiểm tra components bị re-render.
+
+---
+
+**Chúc bạn thuận lợi!**
