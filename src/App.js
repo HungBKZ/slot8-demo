@@ -3,6 +3,28 @@ import InspectingComponentScreen from "./screens/InspectingComponentScreen";
 import ContextApiScreen from "./screens/ContextApiScreen";
 import PerformanceProfilingScreen from "./screens/PerformanceProfilingScreen";
 
+/*
+  App.js - Điểm vào của ứng dụng demo React DevTools
+
+  Mục đích:
+  - Hiển thị menu để chuyển giữa 3 màn hình demo:
+    1) Inspecting Components
+    2) Using Context API
+    3) Performance Profiling
+
+  Cấu trúc dữ liệu chính:
+  - MENU: mảng chứa object { key, label, component } dùng để render nút menu.
+  - currentScreenKey: state (null hoặc key) quyết định màn hình đang hiển thị.
+
+  Hành vi chính:
+  - Nếu currentScreenKey === null -> hiển thị menu.
+  - Nếu có key -> tìm component tương ứng trong MENU và render nó (kèm nút Back).
+
+  Ghi chú:
+  - Mỗi màn hình demo nằm trong thư mục `src/screens/` và export default component.
+  - Styles được định nghĩa ở cuối file để tập trung phần giao diện.
+*/
+
 const MENU = [
   {
     key: "inspect",

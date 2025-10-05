@@ -1,5 +1,23 @@
 import React, { useState, useMemo } from "react";
 
+/*
+  PerformanceProfilingScreen.js
+
+  Mục đích:
+  - Minh hoạ cách dùng React DevTools Profiler để đo thời gian render và xác
+    định component tốn tài nguyên.
+  - Cung cấp một component "nặng" (HeavyComponent) để dễ thấy chi phí render.
+
+  Các phần chính:
+  - HeavyComponent: mô phỏng công việc nặng bằng vòng lặp CPU.
+  - MemoizedHeavy: phiên bản memoized (React.memo) của HeavyComponent để
+    minh hoạ cách tránh re-render không cần thiết.
+  - items + Thêm item: danh sách mô phỏng thao tác người dùng gây re-render.
+
+  Cách demo:
+  - Mở DevTools → Profiler, Start profiling, tương tác (Thêm item / bật tắt heavy),
+    Stop và kiểm tra component nào mất nhiều thời gian.
+*/
 // Simulate a heavy render by running a CPU-bound loop
 function HeavyComponent({ label, iterations = 2000000 }) {
   // heavy calculation

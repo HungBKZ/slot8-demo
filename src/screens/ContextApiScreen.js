@@ -1,11 +1,29 @@
 import React, { useState, useContext, createContext } from "react";
 
-// Tạo context cho theme
+/*
+  ContextApiScreen.js
+
+  Mục đích:
+  - Minh hoạ cách tạo và sử dụng Context API (ví dụ: ThemeContext) để chia sẻ
+    dữ liệu giữa các component mà không cần truyền props qua nhiều cấp.
+
+  Các phần chính:
+  - ThemeContext: context chứa giá trị theme (light/dark).
+  - ContextApiScreen: provider cho context và nút chuyển theme.
+  - ThemeChildComponent: component con dùng useContext để đọc giá trị context.
+
+  Cách demo với DevTools:
+  - Mở tab Components -> chọn `ThemeChildComponent` hoặc component sử dụng
+    context để xem giá trị `context` trong panel của React DevTools.
+*/
+// Tạo context cho theme (giá trị mặc định: "light")
 const ThemeContext = createContext("light");
 
 function ContextApiScreen() {
+  // state quản lý theme hiện tại (light | dark)
   const [theme, setTheme] = useState("light");
 
+  // đổi theme khi bấm nút
   const toggleTheme = () => setTheme(theme === "light" ? "dark" : "light");
 
   return (
@@ -56,6 +74,7 @@ function ContextApiScreen() {
 
 // Component con dùng context
 function ThemeChildComponent() {
+  // đọc giá trị theme từ context
   const theme = useContext(ThemeContext);
   return (
     <div

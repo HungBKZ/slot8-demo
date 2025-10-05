@@ -1,4 +1,4 @@
-# SLOT7 - Demo React DevTools
+# SLOT8 - Demo React DevTools
 
 Demo gồm 3 phần trong 1 dự án React: **Inspecting Components**, **Using Context API**, **Performance Profiling**. Tất cả nằm trong App.js với menu nút bấm để chuyển màn hình.
 

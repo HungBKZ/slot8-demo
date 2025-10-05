@@ -1,5 +1,22 @@
 import React, { useState } from "react";
 
+/*
+  InspectingComponentScreen.js
+
+  Mục đích:
+  - Minh hoạ cách dùng React DevTools để inspect component tree, props và state.
+  - Có ví dụ thay đổi state (màu background) và một component con nhận props
+    để minh hoạ phần "props" trong DevTools.
+
+  Các phần chính:
+  - state `color`: lưu màu background đang hiển thị.
+  - handleChangeColor: thay đổi state để kích hoạt re-render.
+  - ChildPropComponent: component con nhận prop `exampleProp` và render ra.
+
+  Cách demo với DevTools:
+  - Mở DevTools -> tab Components, chọn `InspectingComponentScreen` hoặc
+    `ChildPropComponent` để xem value của state/props.
+*/
 function ChildPropComponent({ label, value }) {
   return (
     <div
